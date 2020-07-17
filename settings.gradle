@@ -1,2 +1,2 @@
-include ':app',':hostlib',':pluginlib',':plugin-gradle-module'
-rootProject.name='DPlugin'
+include ':hostlib', ':pluginlib', ':plugin-gradle-module'
+rootProject.name = 'DPlugin'
