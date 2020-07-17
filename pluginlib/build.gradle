@@ -1,0 +1,21 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 26
+
+        versionCode 1
+        versionName "1.0"
+
+        //aar的接入方在构建时会使用的混淆规则
+        consumerProguardFiles 'proguard-rules.pro'
+    }
+}
+
+dependencies {
+    compileOnly 'com.android.support:appcompat-v7:26.1.0'
+    compileOnly project(':hostlib')
+}

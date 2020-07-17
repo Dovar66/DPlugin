@@ -1,0 +1,19 @@
+apply plugin: 'groovy'
+apply plugin: 'java'
+
+repositories {
+    google()
+    jcenter()
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation 'com.android.tools.build:gradle:3.4.2'
+
+    compile 'com.google.guava:guava:19.0'
+    compile 'commons-io:commons-io:1.4'
+    compile 'commons-codec:commons-codec:1.6'
+    compile 'org.ow2.asm:asm:4.0'
+    compile 'org.javassist:javassist:3.18.2-GA'
+}
