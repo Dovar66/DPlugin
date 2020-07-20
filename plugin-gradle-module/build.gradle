@@ -1,8 +1,19 @@
-apply plugin: 'groovy'
-apply plugin: 'java'
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.gradle.publish:plugin-publish-plugin:0.12.0"
+    }
+}
+plugins {
+    id 'groovy'
+    id "java-gradle-plugin"
+}
+apply plugin: "com.gradle.plugin-publish"
 
-apply plugin: 'com.github.dcendents.android-maven'
-group = 'com.github.Dovar66'
 
 repositories {
     google()
@@ -19,4 +30,48 @@ dependencies {
     compile 'commons-codec:commons-codec:1.6'
     compile 'org.ow2.asm:asm:4.0'
     compile 'org.javassist:javassist:3.18.2-GA'
+}
+
+// The configuration example below shows the minimum required properties
+// configured to publish your plugin to the plugin portal
+pluginBundle {
+    website = 'https://github.com/Dovar66/DPlugin'
+    vcsUrl = 'https://github.com/Dovar66/DPlugin'
+    tags = ['dynamic plugin']
+    description = 'DPlugin'
+
+    plugins {
+        host {
+            // id is captured from java-gradle-plugin configuration
+            displayName = 'dplugin host'
+        }
+
+        plugin {
+            // id is captured from java-gradle-plugin configuration
+            displayName = 'dplugin plugin'
+        }
+    }
+}
+
+// Use java-gradle-plugin to generate plugin descriptors and specify plugin ids
+gradlePlugin {
+    plugins {
+        host {
+            id = 'com.dovar.dplugin.host'
+            implementationClass = 'com.dovar.dplugin.HostPlugin'
+            version = '0.0.2'
+        }
+
+        plugin {
+            id = 'com.dovar.dplugin.plugin'
+            implementationClass = 'com.dovar.dplugin.DPlugin'
+            version = '0.0.2'
+        }
+    }
+}
+
+tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.addStringOption('encoding', 'UTF-8')
+    options.addStringOption('charSet', 'UTF-8')
 }
