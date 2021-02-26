@@ -2,29 +2,37 @@
 
 buildscript {
     repositories {
-        google()
+        //本地
+        mavenLocal()
+
         jcenter()
+        google()
     }
+
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'
-        
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
-
         //本地方式：直接引用plugin模块编译生成的jar文件
-        classpath files('plugin-gradle-module/output/plugin-gradle-module-0.0.2.jar')
+        classpath files('output/plugin-gradle-module-0.0.2.jar')
     }
 }
 
 allprojects {
     repositories {
-        google()
+        mavenLocal()
         jcenter()
-        
+        google()
     }
+}
+
+project.ext {
+    compileSdkVersion = 29
+    buildToolsVersion = "28.0.3"
+
+    minSdkVersion = 16  //设置为21以上可提高编译速度
+    targetSdkVersion = 26
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+

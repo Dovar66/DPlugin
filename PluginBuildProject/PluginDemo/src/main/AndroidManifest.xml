@@ -1,0 +1,19 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.dovar.plugin">
+
+    <!-- application标签里的label等所有属性必须移除，否则部分手机会访问，如果label等正好用到了插件资源就会出现找不到资源的问题-->
+    <!-- 插件打包脚本会自动处理这一步-->
+    <application>
+        <meta-data
+            android:name="com.dovar.plugin.version"
+            android:value="${PLUGIN_VERSION}" />
+
+        <meta-data
+            android:name="com.dovar.plugin.mode"
+            android:value="${PLUGIN_MODE}" />
+
+        <meta-data
+            android:name="com.dovar.plugin.pkgs"
+            android:value="com.dovar.plugin" />
+    </application>
+</manifest>

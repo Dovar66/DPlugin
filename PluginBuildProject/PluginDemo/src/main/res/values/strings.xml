@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--如果你的插件项目里没有任何res资源，请保留这条。保证插件至少生成一个资源ID-->
+    <string name="app_name">demo</string>
+</resources>

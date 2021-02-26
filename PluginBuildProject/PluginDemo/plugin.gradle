@@ -1,0 +1,27 @@
+apply plugin: 'com.dovar.dplugin.plugin'
+
+//创建新插件时，只需要修改这四个变量
+String pName = 'plugin' //插件唯一
+int pluginMode = 0 //0.独立插件 1.耦合插件
+def pluginId = 0x7E //插件唯一 取值范围(0x03, 0x7E]
+def host = '../app' //宿主的路径
+
+def pluginVer = '1' //获取插件的唯一版本号
+
+android {
+    defaultConfig {
+        manifestPlaceholders = [
+                'PLUGIN_VERSION': pluginVer,
+                'PLUGIN_MODE'   : pluginMode
+        ]
+    }
+}
+
+dpluginConfig {
+    mode = pluginMode
+    packageId = pluginId //插件唯一
+    targetHost = host
+    pluginName = pName //插件唯一
+    pluginVersion = pluginVer
+//    output = getOutputDirForPlatformPack(pName) //打包平台时指定输出路径
+}
